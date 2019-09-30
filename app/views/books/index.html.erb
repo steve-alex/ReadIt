@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Books</h1>
+<h1>All Books</h1>
 
 <table>
   <thead>
@@ -12,8 +12,10 @@
   <tbody>
     <% @books.each do |book| %>
       <tr>
+        <td><%= link_to book.title, book %></td>
         <td><%= link_to 'Show', book %></td>
         <td><%= link_to 'Edit', edit_book_path(book) %></td>
+
         <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
@@ -21,5 +23,3 @@
 </table>
 
 <br>
-
-<%= link_to 'New Book', new_book_path %>

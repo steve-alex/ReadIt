@@ -12,6 +12,7 @@
   <tbody>
     <% @reading_lists.each do |reading_list| %>
       <tr>
+        <td><%= link_to reading_list.name, reading_list%></td>
         <td><%= link_to 'Show', reading_list %></td>
         <td><%= link_to 'Edit', edit_reading_list_path(reading_list) %></td>
         <td><%= link_to 'Destroy', reading_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
