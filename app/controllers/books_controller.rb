@@ -8,7 +8,6 @@ class BooksController < ApplicationController
   end
 
   def select
-    byebug
     @book = Book.create(book_params)
     render :show
   end

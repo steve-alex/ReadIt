@@ -1,7 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <h1><%= @book.title %></h1>
+<h2><%= @book.subtitle %></h2>
 <h3>by <%= @book.authors %></h3>
+<p><img src="<%= @book.image_url %>"></p>
+<p><%= @book.description %></p>
+<p><%= @book.language %></p>
+<p><%= @book.published_date %></p>
+<p>Page count: <%= @book.page_count %></p>
 
 <%= link_to 'Edit', edit_book_path(@book) %> |
 <%= link_to 'Back', books_path %>

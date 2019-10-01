@@ -5,7 +5,7 @@ class CreateBooks < ActiveRecord::Migration[6.0]
       t.string :title
       t.string :subtitle
       t.string :authors
-      t.string :genres
+      t.string :categories
       t.string :description
       t.string :language
       t.string :image_url
