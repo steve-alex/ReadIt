@@ -4,7 +4,11 @@ class ReadingListsController < ApplicationController
   # GET /reading_lists
   # GET /reading_lists.json
   def index
-    @reading_lists = ReadingList.all
+    if current_user
+      @reading_lists = current_user.reading_lists
+    else
+      @reading_lists = ReadingList.all
+    end
   end
 
   # GET /reading_lists/1
