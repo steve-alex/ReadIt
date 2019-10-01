@@ -20,12 +20,12 @@
           <%= hidden_field_tag :'book[subtitle]', book['subtitle'] %>
           <%= hidden_field_tag :'book[authors]', book['authors'] %>
           <%= hidden_field_tag :'book[description]', book['description'] %>
-          <%= hidden_field_tag :'book[lanugage]', book['lanugage'] %>
-          <%= hidden_field_tag :'book[image_url]', book['image_url'] %>
-          <%= hidden_field_tag :'book[subtitle]', book['subtitle'] %>
-          <%= hidden_field_tag :'book[subtitle]', book['subtitle'] %>
-
-
+          <%= hidden_field_tag :'book[language]', book['language'] %>
+          <%# <%= hidden_field_tag :'book[image_url]', book['image_url'] %> %>
+          <%= hidden_field_tag :'book[published_date]', book['published_date'] %>
+          <%= hidden_field_tag :'book[page_count]', book['page_count'] %>
+          <%= hidden_field_tag :'book[google_average_rating]', book['google_average_rating'] %>
+          <%= hidden_field_tag :'book[rating_count]', book['rating_count'] %>
           <%= submit_tag "Show book" %>
         <% end %> 
         </td>
