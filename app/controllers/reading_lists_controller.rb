@@ -14,6 +14,7 @@ class ReadingListsController < ApplicationController
   # GET /reading_lists/1
   # GET /reading_lists/1.json
   def show
+    @books = @reading_list.books
   end
 
   # GET /reading_lists/new
