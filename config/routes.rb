@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :reviews, except: [:index]
   resources :reading_lists, include: [:index, :show, :edit, :update]
   post 'books/search', to: 'books#search', as: 'search_books'
+  post 'books/select', to: 'books#select', as: 'select_book' 
   resources :books, include: [:index, :show]
   resources :sessions, include: [:new, :create, :destroy]
   delete "/sessions", to: "sessions#destroy"
