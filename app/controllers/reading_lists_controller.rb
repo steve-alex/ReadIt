@@ -1,4 +1,4 @@
-gitclass ReadingListsController < ApplicationController
+class ReadingListsController < ApplicationController
   before_action :set_reading_list, only: [:show, :edit, :update, :destroy]
 
   # GET /reading_lists

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :reading_lists, include: [:index, :show, :edit, :update]
   post 'books/search', to: 'books#search', as: 'search_books'
   post 'books/select', to: 'books#select', as: 'select_book' 
-  resources :books, include: [:index, :show]
+  resources :books, include: [:]
   resources :sessions, include: [:new, :create, :destroy]
   delete "sessions", to: "sessions#destroy"
   delete "users", to: "users#destroy"

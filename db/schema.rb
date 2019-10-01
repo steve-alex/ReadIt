@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2019_09_30_163237) do
     t.string "title"
     t.string "subtitle"
     t.string "authors"
-    t.string "genres"
+    t.string "categories"
     t.string "description"
     t.string "language"
     t.string "image_url"
