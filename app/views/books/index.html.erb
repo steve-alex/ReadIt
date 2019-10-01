@@ -12,16 +12,15 @@
   <tbody>
     <% @books.each do |book| %>
       <tr>
-        <td><%= book["title"]%></td>
+        <td assign="center"><%= book["title"]%></td>
         <td>
-        <%= form_tag select_book_path do %> <br>
+        <%= form_tag select_book_path(book) do %> <br>
           <%= hidden_field_tag :'book[google_id]', book['google_id'] %>
           <%= hidden_field_tag :'book[title]', book['title'] %>
           <%= hidden_field_tag :'book[subtitle]', book['subtitle'] %>
           <%= hidden_field_tag :'book[authors]', book['authors'] %>
           <%= hidden_field_tag :'book[description]', book['description'] %>
           <%= hidden_field_tag :'book[language]', book['language'] %>
-          <%# <%= hidden_field_tag :'book[image_url]', book['image_url'] %> %>
           <%= hidden_field_tag :'book[published_date]', book['published_date'] %>
           <%= hidden_field_tag :'book[page_count]', book['page_count'] %>
           <%= hidden_field_tag :'book[google_average_rating]', book['google_average_rating'] %>
