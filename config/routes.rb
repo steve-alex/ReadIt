@@ -2,9 +2,11 @@ Rails.application.routes.draw do
   resources :users, except: [:destroy]#, except: [:index]
   resources :reviews, except: [:index]
   resources :reading_lists, include: [:index, :show, :edit, :update]
-  post 'books/search', to: 'books#search', as: 'search_books'
-  post 'books/select', to: 'books#select', as: 'select_book' 
-  resources :books, include: [:]
+
+  post 'books', to: 'books#search', as: 'search_books'
+  post 'books/select', to: 'books#select', as: 'select_book'
+  get 'books/:id', to: 'books#show', as: 'book'
+  resources :books, include: [:index]
   resources :sessions, include: [:new, :create, :destroy]
   delete "sessions", to: "sessions#destroy"
   delete "users", to: "users#destroy"

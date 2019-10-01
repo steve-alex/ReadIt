@@ -4,7 +4,6 @@ class ReadingListsController < ApplicationController
   # GET /reading_lists
   # GET /reading_lists.json
   def index
-    byebug
     if current_user
       @reading_lists = current_user.reading_lists
     else
@@ -77,4 +76,5 @@ class ReadingListsController < ApplicationController
     def reading_list_params
       params.fetch(:reading_list, {})
     end
+
 end
