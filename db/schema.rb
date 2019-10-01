@@ -10,50 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_30_163237) do
-
-  create_table "books", force: :cascade do |t|
-    t.string "title"
-    t.string "subtitle"
-    t.string "authors"
-    t.string "genres"
-    t.string "description"
-    t.string "language"
-    t.string "image_url"
-    t.datetime "published_date"
-    t.integer "page_count"
-    t.float "google_average_rating"
-    t.integer "rating_count"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "reading_list_books", force: :cascade do |t|
-    t.integer "book_id"
-    t.integer "reading_list_id"
-  end
-
-  create_table "reading_lists", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "reviews", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "book_id"
-    t.string "title"
-    t.string "content"
-    t.integer "rating"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string "username"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
+ActiveRecord::Schema.define(version: 0) do
 
 end
