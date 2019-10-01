@@ -15,15 +15,20 @@ class BooksController < ApplicationController
   # GET /books/1
   # GET /books/1.json
   def show
+    @reading_lists = current_user.reading_lists
   end
 
   # POST /books
   # POST /books.json
   def create
-    @book = Book.new(book_params)
+    byebug
+    @book = Book.find(params[:book_id]) #Book.new(book_params)
+    @reading_list = ReadingList.find(params[:reading_list_id])
 
+    
     respond_to do |format|
       if @book.save
+        @reading_list.books << @book
         format.html { redirect_to @book, notice: 'Book was successfully created.' }
         format.json { render :show, status: :created, location: @book }
       else

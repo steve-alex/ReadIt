@@ -30,6 +30,7 @@
               <%= link_to "Log Out", sessions_path, method: :delete %> |
           <%= link_to "Delete my Account", users_path, method: :delete %>
           <% else %>
+          
             <%= link_to "Log In", new_session_path %>
         <% end %>
     </div>
