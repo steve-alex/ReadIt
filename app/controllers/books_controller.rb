@@ -21,20 +21,13 @@ class BooksController < ApplicationController
   # POST /books
   # POST /books.json
   def create
-    byebug
     @book = Book.find(params[:book_id]) #Book.new(book_params)
     @reading_list = ReadingList.find(params[:reading_list_id])
-
+    @reading_list.books << @book
     
     respond_to do |format|
-      if @book.save
-        @reading_list.books << @book
-        format.html { redirect_to @book, notice: 'Book was successfully created.' }
+        format.html { redirect_to @book, notice: "Book was successfully added to #{@reading_list.name}." }
         format.json { render :show, status: :created, location: @book }
-      else
-        format.html { render :new }
-        format.json { render json: @book.errors, status: :unprocessable_entity }
-      end
     end
   end
 
