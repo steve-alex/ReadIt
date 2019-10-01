@@ -24,7 +24,7 @@ class APIRequestMaker
     book["genres"] = book_data["volumeInfo"]["genres"] #Slice this into different genres
     book["description"] = book_data["volumeInfo"]["description"]
     book["language"] = book_data["volumeInfo"]["language"]
-    book["image_url"] = book_data["volumeInfo"]["imageLinks"]["thumbnail"]
+    # book["image_url"] = book_data["volumeInfo"]["imageLinks"]["thumbnail"]
     book["published_date"] = book_data["volumeInfo"]["publisheddate"]
     book["page_count"] = book_data["volumeInfo"]["pageCount"]
     book["google_average_rating"] = book_data["volumeInfo"]["averageRating"] #Check if this exists
@@ -37,6 +37,3 @@ class APIRequestMaker
   end
 
 end
-
-search = APIRequestMaker.new("intitle", "Crime and punishment")
-puts search.build_book_hash[0]

@@ -7,6 +7,12 @@ class BooksController < ApplicationController
     @books = Book.all
   end
 
+  def select
+    byebug
+    @book = Book.create(book_params)
+    render :show
+  end
+
   # GET /books/1
   # GET /books/1.json
   def show
@@ -62,7 +68,8 @@ class BooksController < ApplicationController
   end
 
   def search
-    @books = APIRequestMaker.new(params[:search_id], params[:intitle]).build_book_hash
+    @books = APIRequestMaker.new(params[:search_id], params[:query]).build_book_hash
+    render :index
   end
 
   private
@@ -73,6 +80,6 @@ class BooksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
-      params.fetch(:book, {})
+      params.require(:book).permit!
     end
 end
