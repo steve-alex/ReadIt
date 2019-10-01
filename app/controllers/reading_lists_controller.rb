@@ -1,9 +1,10 @@
-class ReadingListsController < ApplicationController
+gitclass ReadingListsController < ApplicationController
   before_action :set_reading_list, only: [:show, :edit, :update, :destroy]
 
   # GET /reading_lists
   # GET /reading_lists.json
   def index
+    byebug
     if current_user
       @reading_lists = current_user.reading_lists
     else

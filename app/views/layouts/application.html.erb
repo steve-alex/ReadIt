@@ -16,11 +16,18 @@
       <%= link_to "Reading Lists", reading_lists_path %>
     </nav>
 
-     <div align="right">
+    <%= form_tag search_books_path do %>
+      <%= select_tag(:search_id, options_for_select([['Title', 'intitle'], ["Author", "inauthor"], ["Subject", "subject"]])) %>
+      <%= text_field_tag :query %>
+      <%= submit_tag %>
+
+    <% end %>
+  
+    <div align="right">
         <% if current_user %>
             <h4>Currently logged in as: <%= current_user.username %></h4>
-            <%= link_to "Log Out", sessions_path, method: :delete %> |
-            <%= link_to "Delete my Account", users_path, method: :delete %>
+              <%= link_to "Log Out", sessions_path, method: :delete %> |
+          <%= link_to "Delete my Account", users_path, method: :delete %>
           <% else %>
           
             <%= link_to "Log In", new_session_path %>
