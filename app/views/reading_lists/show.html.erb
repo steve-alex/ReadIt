@@ -2,6 +2,10 @@
 
 <h1><%= @reading_list.name %></h1>
 
+<% @books.each do |book| %>
+    <a href="<%= book_path(book) %>"> <img src="<%= book.image_url %>"> </a>
+<% end %>
+
 <table>
     <thead>
     <tr>
