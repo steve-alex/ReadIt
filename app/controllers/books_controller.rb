@@ -9,7 +9,7 @@ class BooksController < ApplicationController
 
   def select
     @book = Book.find_by(google_id: book_params[:google_id])
-
+    
     unless @book
       @book = Book.create(book_params)
     end
@@ -50,7 +50,6 @@ class BooksController < ApplicationController
       end
       @reading_list.books << @book
     end
-      
   end
 
   # DELETE /books/1
@@ -64,7 +63,12 @@ class BooksController < ApplicationController
   end
 
   def search
-    @books = APIRequestMaker.new(params[:search_id], params[:query], params[:num_results_id]).build_book_hash
+    @request = APIRequestMaker.new()
+    @results = @request.api_results(params[:search_id], params[:query], params[:num_results_id])
+    @books = @request.build_book_hash(@results)
+    #(byebug) @books = APIRequestMaker.new(params[:search_id], "Harry Potter", params[:num_results_id]).build_book_hash
+    #@books = APIRequestMaker.new(params[:search_id], params[:query], "10").build_book_hash
+    #@books = APIRequestMaker.new("intitle", params[:query], params[:num_results_id]).build_book_hash
     render :index
   end
 
