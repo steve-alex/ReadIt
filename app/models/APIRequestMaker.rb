@@ -1,9 +1,10 @@
 require 'unirest'
 
 class APIRequestMaker
-  def initialize(type, query)
+  def initialize(type, query, num_results)
     @type = type #has to be intitle, inauthor or subject
     @query = query
+    @num_results = num_results
     @api_key = "AIzaSyB8DIVXeJUL4naMfb9c4OOeA53rDXpwIiM" #Is this even secure?
   end
 
@@ -41,10 +42,9 @@ class APIRequestMaker
   end
     
   def api_results
-    Unirest.get("https://www.googleapis.com/books/v1/volumes?q=#{@type}:#{@query}&key=#{@api_key}").body["items"]
+    Unirest.get("https://www.googleapis.com/books/v1/volumes?q=#{@type}:#{@query}&maxResults=#{@num_results}&key=#{@api_key}").body["items"]
   end
 
 end
 
 search = APIRequestMaker.new("intitle", "Jojo")
-puts search.api_results

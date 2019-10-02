@@ -42,7 +42,7 @@ class BooksController < ApplicationController
   end
 
   def search
-    @books = APIRequestMaker.new(params[:search_id], params[:query]).build_book_hash
+    @books = APIRequestMaker.new(params[:search_id], params[:query], params[:num_results_id]).build_book_hash
     render :index
   end
 
@@ -54,6 +54,6 @@ class BooksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
-      params.require(:book).permit!
+      params.fetch(:book, {})
     end
 end
