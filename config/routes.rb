@@ -10,6 +10,6 @@ Rails.application.routes.draw do
   resources :sessions, include: [:new, :create, :destroy]
   delete "sessions", to: "sessions#destroy"
   delete "users", to: "users#destroy"
-  post "books/create", to: "books#create", as: "add_book"
+  post "books/archivebook", to: "books#archivebook", as: "add_book"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
