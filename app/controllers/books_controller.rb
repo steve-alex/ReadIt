@@ -8,7 +8,10 @@ class BooksController < ApplicationController
   end
 
   def select
-    @book = Book.create(book_params)
+    @book = Book.find_by(google_id: book_params[:google_id])
+    unless @book
+      @book = Book.create(book_params)
+    end
     redirect_to book_path(@book)
   end
 
@@ -23,12 +26,21 @@ class BooksController < ApplicationController
   def create
     @book = Book.find(params[:book_id]) #Book.new(book_params)
     @reading_list = ReadingList.find(params[:reading_list_id])
-    @reading_list.books << @book
-    
-    respond_to do |format|
+
+    if @reading_list.books.include?(@book)
+      respond_to do |format|
+        format.html { redirect_to @book, notice: "Book is already in #{@reading_list.name}." }
+        format.json { render :show, status: :created, location: @book }
+      end
+    else
+      @reading_list.books << @book
+
+      respond_to do |format|
         format.html { redirect_to @book, notice: "Book was successfully added to #{@reading_list.name}." }
         format.json { render :show, status: :created, location: @book }
+      end
     end
+
   end
 
   # DELETE /books/1
@@ -42,7 +54,12 @@ class BooksController < ApplicationController
   end
 
   def search
-    @books = APIRequestMaker.new(params[:search_id], params[:query], params[:num_results_id]).build_book_hash
+    @request = APIRequestMaker.new()
+    @results = @request.api_results(params[:search_id], params[:query], params[:num_results_id])
+    @books = @request.build_book_hash(@results)
+    #(byebug) @books = APIRequestMaker.new(params[:search_id], "Harry Potter", params[:num_results_id]).build_book_hash
+    #@books = APIRequestMaker.new(params[:search_id], params[:query], "10").build_book_hash
+    #@books = APIRequestMaker.new("intitle", params[:query], params[:num_results_id]).build_book_hash
     render :index
   end
 
