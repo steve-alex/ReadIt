@@ -1,16 +1,20 @@
 require 'unirest'
 
 class APIRequestMaker
-  def initialize(type, query, num_results)
-    @type = type #has to be intitle, inauthor or subject
-    @query = query
-    @num_results = num_results
-    @api_key = "AIzaSyB8DIVXeJUL4naMfb9c4OOeA53rDXpwIiM" #Is this even secure?
-  end
+  @@api_key = "AIzaSyB8DIVXeJUL4naMfb9c4OOeA53rDXpwIiM" #Is this even secure?
 
-  def build_book_hash
+  attr_accessor :type, :query, :num_results
+  
+  # def initialize(type:, query:, num_results:)
+  #   @type = type #has to be intitle, inauthor or subject
+  #   @query = query
+  #   @num_results = num_results
+  #   @api_key = "AIzaSyB8DIVXeJUL4naMfb9c4OOeA53rDXpwIiM" #Is this even secure?
+  # end
+
+  def build_book_hash(api_results2)
     books = []
-    api_results.each do |book_data|
+    api_results2.each do |book_data|
       books << create_book_item(book_data)
     end
     books
@@ -41,10 +45,8 @@ class APIRequestMaker
     end
   end
     
-  def api_results
-    Unirest.get("https://www.googleapis.com/books/v1/volumes?q=#{@type}:#{@query}&maxResults=#{@num_results}&key=#{@api_key}").body["items"]
+  def api_results(type, query, num_results)
+    Unirest.get("https://www.googleapis.com/books/v1/volumes?q=#{type}:#{query}&maxResults=#{num_results}&key=#{@@api_key}").body["items"]
   end
 
 end
-
-search = APIRequestMaker.new("intitle", "Jojo")
