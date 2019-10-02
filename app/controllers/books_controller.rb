@@ -9,9 +9,11 @@ class BooksController < ApplicationController
 
   def select
     @book = Book.find_by(google_id: book_params[:google_id])
+    
     unless @book
       @book = Book.create(book_params)
     end
+
     redirect_to book_path(@book)
   end
 
@@ -23,7 +25,7 @@ class BooksController < ApplicationController
 
   # POST /books
   # POST /books.json
-  def create
+  def archivebook
     @book = Book.find(params[:book_id]) #Book.new(book_params)
     @reading_list = ReadingList.find(params[:reading_list_id])
 
@@ -33,14 +35,21 @@ class BooksController < ApplicationController
         format.json { render :show, status: :created, location: @book }
       end
     else
-      @reading_list.books << @book
-
-      respond_to do |format|
-        format.html { redirect_to @book, notice: "Book was successfully added to #{@reading_list.name}." }
-        format.json { render :show, status: :created, location: @book }
+      if current_user.books.include?(@book)
+        byebug
+        ReadingListBook.find_by(reading_list_id: current_user.reading_list_containing(@book).id, book_id: @book.id).destroy
+        respond_to do |format|
+          format.html { redirect_to @book, notice: "Book was successfully moved to #{@reading_list.name}." }
+          format.json { render :show, status: :created, location: @book }
+        end
+      else
+        respond_to do |format|
+          format.html { redirect_to @book, notice: "Book was successfully added to #{@reading_list.name}." }
+          format.json { render :show, status: :created, location: @book }
+        end
       end
+      @reading_list.books << @book
     end
-
   end
 
   # DELETE /books/1
