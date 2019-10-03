@@ -21,7 +21,8 @@ Rails.application.routes.draw do
   post 'books', to: 'books#search', as: 'search_books'
   post 'books/select', to: 'books#select', as: 'select_book'
   post "books/archivebook", to: "books#archivebook", as: "add_book"
- 
+  delete "books/:id/unarchive", to: "books#destroy", as: "unarchive_book"
+  
 
   get "sessions/new", to: "sessions#new", as: "new_session"
   post 'sessions', to: "sessions#create"

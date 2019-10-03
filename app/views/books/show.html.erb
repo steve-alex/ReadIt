@@ -53,6 +53,15 @@
       <% end %>
     <% end %>
   <% end %>
-  </div>
+<% end %>
 
-</div>
+
+<% if current_user.finished_reading.books.include?(@book) && !@review%>
+  <%= link_to "Add Review", new_review_path %>
+<% end %>
+
+<br> <br>
+
+<% if current_user.books.include?(@book) %>
+  <%= link_to "Remove from #{current_user.reading_list_containing(@book).name}", unarchive_book_path, method: :delete%>
+<% end %>
