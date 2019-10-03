@@ -1,1 +1,6 @@
 <div class="book-reviews-div"><h1><%= @book.title %> All reviews</h1></div>
+<% @reviews.each do |review| %>
+    <div class="review-title-div"><h2><%= review.title %> |   <%= review.user.username %></h2></div>
+    <div class="review-rating-div"><p><strong>Rating: <%= review.rating %>/5</strong></p></div>
+    <div class="review-content-div"><p><%= review.content %></p></div>
+<% end %>

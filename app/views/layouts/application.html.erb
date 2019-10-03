@@ -28,9 +28,10 @@
   <div class="navigation-div" align="right">
     <% if current_user %>
       <h4>Currently logged in as: <%= current_user.username %></h4>
-      <%= link_to "Log Out", sessions_path, method: :delete %> | 
       <%= link_to "Home Page", user_path(current_user), method: :get%> |
+      <%= link_to "Analytics", show_analytics_path(current_user), method: :get%> |
       <%= link_to "Settings", settings_path(current_user), method: :get%>
+      <%= link_to "Log Out", sessions_path, method: :delete %> | 
     <% else %>
       <%= link_to "Log In", new_session_path %>
     <% end %>
