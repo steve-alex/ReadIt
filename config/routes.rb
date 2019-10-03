@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  #, except: [:index]
+
   resources :reviews, only: [:update]
 
   get "books/:id/new_review", to: "reviews#new", as: "new_review"
@@ -15,7 +15,8 @@ Rails.application.routes.draw do
   
   get 'books/:id', to: 'books#show', as: 'book'
   get 'books', to: 'books#index', as: 'books' #to delete!!!
-  get "books/:id/reviews", to: "books#reviews", as: "book_reviews"
+  #below route to show all reviews of a book (no method in controller or view page)
+  #get "books/:id/reviews", to: "books#reviews", as: "book_reviews"
   post 'books', to: 'books#search', as: 'search_books'
   post 'books/select', to: 'books#select', as: 'select_book'
   post "books/archivebook", to: "books#archivebook", as: "add_book"
@@ -24,5 +25,5 @@ Rails.application.routes.draw do
   get "sessions/new", to: "sessions#new", as: "new_session"
   post 'sessions', to: "sessions#create"
   delete "sessions", to: "sessions#destroy"
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  
 end
