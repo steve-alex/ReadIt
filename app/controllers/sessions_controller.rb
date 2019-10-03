@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
 
     def new
+        session.destroy
     end
 
     def create

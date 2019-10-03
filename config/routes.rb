@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :users, except: [:destroy]#, except: [:index]
-  resources :reviews, except: [:index]
+  resources :reviews, except: [:index, :new, :show]
   resources :reading_lists, include: [:index, :show, :edit, :update]
 
   post 'books', to: 'books#search', as: 'search_books'
@@ -11,5 +11,8 @@ Rails.application.routes.draw do
   delete "sessions", to: "sessions#destroy"
   delete "users", to: "users#destroy"
   post "books/archivebook", to: "books#archivebook", as: "add_book"
+  get "books/:id/reviews", to: "books#reviews", as: "book_reviews"
+  get "books/:id/new_review", to: "reviews#new", as: "new_review"
+  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -17,6 +17,20 @@
     <%= submit_tag "Add" %>
 <% end %>
 
+<br> <br>
 
-<%= link_to 'Edit', edit_book_path(@book) %> |
-<%= link_to 'Back', books_path %>
+<% @reviews.first(5).each do |review| %>
+    <h2><%= review.title %> | <%= review.user.username %></h2>
+    <p><strong>Rating: <%= review.rating %>/5</strong></p>
+    <p><%= review.content %></p>
+    <% if review.user_id == current_user.id %>
+      <%= link_to "Edit", edit_review_path(review) %>
+      <%= button_to "Delete", review, method: "delete", data: { confirm: 'Are you sure?'} %>
+    <% end %>
+    <br> <br>
+<% end %>
+
+<% if current_user.finished_reading.books.include?(@book) %>
+  <%= link_to "Add Review", new_review_path %>
+<% end %>
+

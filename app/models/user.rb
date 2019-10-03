@@ -10,4 +10,9 @@ class User < ApplicationRecord
             a = reading_lists.select{|rl| rl.books.include?(book)}
             a[0]
     end
+
+    def finished_reading
+        a = reading_lists.select{|rl| rl.name == "Finished Reading"}
+        a[0]
+    end
 end
