@@ -22,18 +22,15 @@
   </nav>
     
   <div align="left">
-    <%= link_to "All Users", users_path %> |
-    <%= link_to "All Books", books_path %> |
-    <%= link_to "Reading Lists", reading_lists_path %>
+    <%= link_to "ReadIt Users", users_path %> 
   </div>
       
   <div align="right">
     <% if current_user %>
       <h4>Currently logged in as: <%= current_user.username %></h4>
-      <%= link_to "Log Out", sessions_path, method: :delete %> |
-      <%= link_to "Delete my Account", users_path, method: :delete %> | 
-      <%= link_to "Home Page", user_path(current_user), method: :get%>
-    
+      <%= link_to "Log Out", sessions_path, method: :delete %> | 
+      <%= link_to "Home Page", user_path(current_user), method: :get%> |
+      <%= link_to "Settings", settings_path(current_user), method: :get%>
     <% else %>
       <%= link_to "Log In", new_session_path %>
     <% end %>
