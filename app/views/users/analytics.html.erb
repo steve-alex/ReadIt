@@ -1,17 +1,18 @@
-<h1>Analytics</h1>
+<div class="analytics-container-div">
+    <div class="analytics-header-div"><h1>Analytics</h1></div>
 
-<br>
+    <div class="reading-lists-header-div"><h2>Number of Books in your reading lists: </h2></div>
 
-<h2>Number of Books in your reading lists: </h2>
-<% current_user.reading_lists.each do |reading_list| %>
-    <p><%= reading_list.name %>: <%= reading_list.books.length %></p>
-<% end %>
+    <% current_user.reading_lists.each do |reading_list| %>
+        <div class="reading-list-div"><p><%= reading_list.name %>: <%= reading_list.books.length %></p></div>
+    <% end %>
 
-<h2>Favourite author</h2>
-<p><%= current_user.favourite_author %></p>
+    <div class="favourite-author-title-div"><h2>Favourite author</h2></div>
+    <div class="favourite-author-div"><p><%= current_user.favourite_author %></p></div>
 
-<h2>Favourite genre</h2>
-<p><%= current_user.favourite_category %></p>
+    <div class="favourite-genre-title-div"><h2>Favourite Category</h2></div>
+    <div class="favourite-genre-div"><p><%= current_user.favourite_category %></p></div>
 
-<h2>Number of reviews written<h2>
-<p><%= current_user.reviews.length %></p>
+    <div class="review-header-div"><h2>Number of reviews written<h2></div>
+    <div class="review-div"><p><p><%= current_user.reviews.length %></p></p></div>
+</div>
