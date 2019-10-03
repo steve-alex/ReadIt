@@ -16,9 +16,14 @@ class User < ApplicationRecord
         a[0]
     end
 
+    def favourite_author
+        authors_array = books.map { |book| book.authors }
+        authors_array.max_by {|author| authors_array.count(author) }
+    end
 
-    def books_in(readinglist)
-        
+    def favourite_category
+        categories_array = books.map { |book| book.categories }
+        categories_array.max_by {|categories| categories_array.count(categories) }
     end
 
 end

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   resources :users, except: [:destroy]
   delete "users", to: "users#destroy"
+  get "users/:id/analytics", to: "users#analytics", as: "show_analytics"
   get "users/:id/settings", to: "users#settings", as: "settings"
   
   get 'books/:id', to: 'books#show', as: 'book'
