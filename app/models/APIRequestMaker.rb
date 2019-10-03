@@ -12,10 +12,12 @@ class APIRequestMaker
   #   @api_key = "AIzaSyB8DIVXeJUL4naMfb9c4OOeA53rDXpwIiM" #Is this even secure?
   # end
 
-  def build_book_hash(api_results2)
+  def build_book_hash(api_results)
     books = []
-    api_results2.each do |book_data|
-      books << create_book_item(book_data)
+    if api_results
+      api_results.each do |book_data|
+        books << create_book_item(book_data)
+      end
     end
     books
   end
@@ -29,7 +31,7 @@ class APIRequestMaker
     book["categories"] = parse_array(book_data["volumeInfo"]["categories"]) #Slice this into different genres
     book["description"] = book_data["volumeInfo"]["description"]
     book["language"] = book_data["volumeInfo"]["language"]
-    book["image_url"] = book_data["volumeInfo"]["imageLinks"]["thumbnail"]
+    book["image_url"] = verify_image(book_data)
     book["published_date"] = book_data["volumeInfo"]["publisheddate"]
     book["page_count"] = book_data["volumeInfo"]["pageCount"]
     book["google_average_rating"] = book_data["volumeInfo"]["averageRating"] #Check if this exists
@@ -42,6 +44,14 @@ class APIRequestMaker
       array.join(", ")
     else
       nil
+    end
+  end
+
+  def verify_image(book_data)
+    if book_data["volumeInfo"]["imageLinks"]
+      return book_data["volumeInfo"]["imageLinks"]["thumbnail"]
+    else
+      "https://lled.educ.ubc.ca/files/2017/10/460.png"
     end
   end
     

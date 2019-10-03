@@ -7,8 +7,8 @@ class User < ApplicationRecord
     end
 
     def reading_list_containing(book)
-            a = reading_lists.select{|rl| rl.books.include?(book)}
-            a[0]
+        a = reading_lists.select{|rl| rl.books.include?(book)}
+        a[0]
     end
 
     def finished_reading

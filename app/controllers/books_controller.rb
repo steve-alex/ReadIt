@@ -69,6 +69,11 @@ class BooksController < ApplicationController
     @request = APIRequestMaker.new()
     @results = @request.api_results(params[:search_id], params[:query], params[:num_results_id])
     @books = @request.build_book_hash(@results)
+    if @books.empty?
+      @message = "Your search did not return any results"
+    else
+      @message = ""
+    end
     #(byebug) @books = APIRequestMaker.new(params[:search_id], "Harry Potter", params[:num_results_id]).build_book_hash
     #@books = APIRequestMaker.new(params[:search_id], params[:query], "10").build_book_hash
     #@books = APIRequestMaker.new("intitle", params[:query], params[:num_results_id]).build_book_hash
