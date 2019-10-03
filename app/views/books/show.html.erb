@@ -1,42 +1,58 @@
-<p id="notice"><%= notice %></p>
+<div class="book-notice-div"><p id="notice"><%= notice %></p></div>
 
-<h1><%= @book.title %></h1>
-<h2><%= @book.subtitle %></h2>
-<h3>by <%= @book.authors %></h3>
-<p><img src="<%= @book.image_url %>"></p>
-<p><%= @book.description %></p>
-<p><%= @book.language %></p>
-<p><%= @book.published_date %></p>
-<p>Page count: <%= @book.page_count %></p>
+<div class="book-show-container">
+  <div class="book-show-banner-container"></div>
+    <div class="book-show-title-div"><h1><%= @book.title %></h1></div>
+    <div class="book-show-subtitle-div"><h1><%= @book.subtitle %></h1></div>
+    <% if @book.authors %>
+      <div class="book-show-authors-div"><h3>by <%= @book.authors %></h3></div>
+    <% end %>
+  </div>
 
+  <div class="book-show-info-div">
+    <div class="book-show-image-div"><img src="<%= @book.image_url %>"></div>
+    <div class="book-show-descrption-div"><p><%= @book.description %></p></div>
+    <div class="book-show-language-div"><p><%= @book.language %></p></div>
+    <div class="book-show-published-date-div"><p><%= @book.published_date %></p></div>
+    <div class="book-show-page-count-div"><p>Page count: <%= @book.page_count %></p></div>
+  </div>
+  
+  <div class="book-add-form-div">
+    <%= form_tag add_book_path do %>
+      <%= hidden_field_tag :book_id, @book.id %>
+      <%= select_tag :reading_list_id , options_for_select(@reading_lists.map{|r| [r.name, r.id]}) %>
+      <%= submit_tag "Add" %>
+    <% end %>
+  </div>
 
-<%= form_tag add_book_path do %>
-    <%= hidden_field_tag :book_id, @book.id %>
-    <%= select_tag :reading_list_id , options_for_select(@reading_lists.map{|r| [r.name, r.id]}) %>
+  <br>
+  <br>
+  <br>
+  
+  <div class="add-review-div">
+    <% if current_user.finished_reading.books.include?(@book) %>
+      <%= link_to "Add Review", new_review_path %>
+    <% end %>
+  </div>
+  
+  <div class="show-reviews-div">
+  <% if @reviews %>
+    <% @reviews.first(5).each do |review| %>
+      <div class="review-title-div"><h2><%= review.title %> |   <%= review.user.username %></h2></div>
+      <div class="review-rating-div"><p><strong>Rating: <%= review.rating %>/5</strong></p></div>
+      <div class="review-content-div"><p><%= review.content %></p></div>
 
-    <%= submit_tag "Add" %>
-<% end %>
-
-<br> <br>
-<% if @reviews %>
-  <% @reviews.first(5).each do |review| %>
-    <h2><%= review.title %> | <%= review.user.username %></h2>
-    <p><strong>Rating: <%= review.rating %>/5</strong></p>
-    <p><%= review.content %></p>
-
-    <% if review.user_id == current_user.id %>
-      <%= link_to "Edit", edit_review_path(review) %> | 
-      <%= form_tag @book, method: 'delete' do%>
-        <%= hidden_field_tag :review_id, review.id  %>
-        <%= submit_tag "Delete" %>
+      <% if review.user_id == current_user.id %>
+        <div class="edit-review-div"><%= link_to "Edit", edit_review_path(review) %></div>
+        <div class="button-div">
+          <%= form_tag @book, method: 'delete' do%>
+            <%= hidden_field_tag :review_id, review.id  %>
+            <%= submit_tag "Delete" %>
+          <% end %>
+        </div>
       <% end %>
     <% end %>
-    <br> <br>
   <% end %>
-<% end %>
+  </div>
 
-
-<% if current_user.finished_reading.books.include?(@book) %>
-  <%= link_to "Add Review", new_review_path %>
-<% end %>
-
+</div>

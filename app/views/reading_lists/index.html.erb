@@ -1,14 +1,14 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Reading Lists</h1>
-
+<div class="reading-lists-notice-div"><p id="notice"><%= notice %></p></div>
+<div class="reading-lists-header-div"><h1>Reading Lists</h1></div>
 
 <% @reading_lists.each do |reading_list| %>
-  <h3><%= link_to reading_list.name, reading_list%></h3>
-  <% reading_list.books.each do |book| %>
-   <a href="<%= book_path(book) %>"> <img src="<%= book.image_url %>"> </a>
-  <% end %>
+  <div class="reading-list-container-div">
+    <div class="reading-list-link-div"><h3><%= link_to reading_list.name, reading_list%></h3></div>
+      <% reading_list.books.each do |book| %>
+      <div class="rl-book-image-div">
+        <a href="<%= book_path(book) %>"> <img src="<%= book.image_url %>"> </a>
+      </div>
+      <% end %>
+    </div>
+  <div>
 <% end %>
-
-<br>
-
