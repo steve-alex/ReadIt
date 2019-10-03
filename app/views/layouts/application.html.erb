@@ -30,7 +30,7 @@
       <h4>Currently logged in as: <%= current_user.username %></h4>
       <%= link_to "Log Out", sessions_path, method: :delete %> | 
       <%= link_to "Home Page", user_path(current_user), method: :get%> |
-      <%= link_to "Settings", settings_path, method: :get%>
+      <%= link_to "Settings", settings_path(current_user), method: :get%>
     <% else %>
       <%= link_to "Log In", new_session_path %>
     <% end %>
