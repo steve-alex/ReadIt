@@ -1,25 +1,15 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: [:edit, :update]
 
-  # GET /reviews
-  # GET /reviews.json
-  def index
-    @reviews = Review.all
-  end
-
-  # GET /reviews/new
   def new
     @review = Review.new
     @book = Book.find(params[:id])
   end
 
-  # GET /reviews/1/edit
   def edit
     @book = Book.find(@review.book.id)
   end
 
-  # POST /reviews
-  # POST /reviews.json
   def create
     @review = Review.new(review_params)
     @review.user_id = current_user.id
@@ -36,8 +26,6 @@ class ReviewsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /reviews/1
-  # PATCH/PUT /reviews/1.json
   def update
     @book = Book.find(@review.book.id) 
     respond_to do |format|
@@ -51,8 +39,6 @@ class ReviewsController < ApplicationController
     end
   end
 
-  # DELETE /reviews/1
-  # DELETE /reviews/1.json
   def destroy
     @review = Review.find(params[:review_id])
     @book = @review.book

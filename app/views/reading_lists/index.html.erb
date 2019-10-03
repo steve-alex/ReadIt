@@ -2,21 +2,13 @@
 
 <h1>Reading Lists</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @reading_lists.each do |reading_list| %>
-      <tr>
-        <td><h3><%= link_to reading_list.name, reading_list%></h3></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<% @reading_lists.each do |reading_list| %>
+  <h3><%= link_to reading_list.name, reading_list%></h3>
+  <% reading_list.books.each do |book| %>
+   <a href="<%= book_path(book) %>"> <img src="<%= book.image_url %>"> </a>
+  <% end %>
+<% end %>
 
 <br>
 

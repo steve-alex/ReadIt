@@ -1,6 +1,6 @@
 class User < ApplicationRecord
     has_many :reading_lists
-    has_many :reviews
+    has_many :reviews, dependent: :destroy
 
     def books
         reading_lists.map(&:books).flatten      

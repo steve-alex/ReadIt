@@ -1,33 +1,25 @@
 class ReadingListsController < ApplicationController
   before_action :set_reading_list, only: [:show, :edit, :update, :destroy]
 
-  # GET /reading_lists
-  # GET /reading_lists.json
   def index
     if current_user
       @reading_lists = current_user.reading_lists
     else
-      @reading_lists = ReadingList.all
+      @reading_lists = []
     end
   end
 
-  # GET /reading_lists/1
-  # GET /reading_lists/1.json
   def show
     @books = @reading_list.books
   end
 
-  # GET /reading_lists/new
-  def new
+  def new #not using yet
     @reading_list = ReadingList.new
   end
 
-  # GET /reading_lists/1/edit
-  def edit
+  def edit #not using yet
   end
 
-  # POST /reading_lists
-  # POST /reading_lists.json
   def create
     @reading_list = ReadingList.new(reading_list_params)
 
@@ -42,9 +34,7 @@ class ReadingListsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /reading_lists/1
-  # PATCH/PUT /reading_lists/1.json
-  def update
+  def update #not using yet
     respond_to do |format|
       if @reading_list.update(reading_list_params)
         format.html { redirect_to @reading_list, notice: 'Reading list was successfully updated.' }
@@ -56,9 +46,7 @@ class ReadingListsController < ApplicationController
     end
   end
 
-  # DELETE /reading_lists/1
-  # DELETE /reading_lists/1.json
-  def destroy
+  def destroy #not using yet
     @reading_list.destroy
     respond_to do |format|
       format.html { redirect_to reading_lists_url, notice: 'Reading list was successfully destroyed.' }
