@@ -3,9 +3,11 @@
 <h1>Welcome <%= @user.username %></h1>
 
 <% @user.reading_lists.each do |reading_list| %>
-    <p><%= link_to reading_list.name, reading_list %></p>
+    <h3><%= link_to reading_list.name, reading_list %></h3>
+    
+    <% reading_list.books.each do |book| %>
+        <a href="<%= book_path(book) %>"> <img src="<%= book.image_url %>"> </a>
+    <% end %>
+<br>
 <% end %>
 
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
