@@ -1,0 +1,17 @@
+<h1>Analytics</h1>
+
+<br>
+
+<h2>Number of Books in your reading lists: </h2>
+<% current_user.reading_lists.each do |reading_list| %>
+    <p><%= reading_list.name %>: <%= reading_list.books.length %></p>
+<% end %>
+
+<h2>Favourite author</h2>
+<p><%= current_user.favourite_author %></p>
+
+<h2>Favourite genre</h2>
+<p><%= current_user.favourite_category %></p>
+
+<h2>Number of reviews written<h2>
+<p><%= current_user.reviews.length %></p>
