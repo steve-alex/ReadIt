@@ -13,7 +13,6 @@
 <%= form_tag add_book_path do %>
     <%= hidden_field_tag :book_id, @book.id %>
     <%= select_tag :reading_list_id , options_for_select(@reading_lists.map{|r| [r.name, r.id]}) %>
-
     <%= submit_tag "Add" %>
 <% end %>
 
@@ -26,7 +25,7 @@
 
     <% if review.user_id == current_user.id %>
       <%= link_to "Edit", edit_review_path(review) %> | 
-      <%= form_tag @book, method: 'delete' do%>
+      <%= form_tag delete_review_path(@book), method: 'delete' do%>
         <%= hidden_field_tag :review_id, review.id  %>
         <%= submit_tag "Delete" %>
       <% end %>
@@ -36,7 +35,12 @@
 <% end %>
 
 
-<% if current_user.finished_reading.books.include?(@book) %>
+<% if current_user.finished_reading.books.include?(@book) && !@review%>
   <%= link_to "Add Review", new_review_path %>
 <% end %>
 
+<br> <br>
+
+<% if current_user.books.include?(@book) %>
+  <%= link_to "Remove from #{current_user.reading_list_containing(@book).name}", unarchive_book_path, method: :delete%>
+<% end %>

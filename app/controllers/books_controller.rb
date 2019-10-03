@@ -18,6 +18,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @reading_lists = current_user.reading_lists
     @reviews = @book.reviews
+    @review = Review.find_by(user_id: current_user.id, book_id: @book.id)
   end
 
   def archivebook
@@ -47,9 +48,12 @@ class BooksController < ApplicationController
   end
 
   def destroy
-    @book.destroy
+    @book = Book.find(params[:id])
+    @reading_list = current_user.reading_list_containing(@book)
+    @reading_list_book = ReadingListBook.find_by(reading_list: @reading_list.id, book_id: @book.id)
+    @reading_list_book.destroy
     respond_to do |format|
-      format.html { redirect_to books_url, notice: 'Book was successfully destroyed.' }
+      format.html { redirect_to book_path(@book), notice: "Book was successfully removed from #{@reading_list.name}." }
       format.json { head :no_content }
     end
   end
