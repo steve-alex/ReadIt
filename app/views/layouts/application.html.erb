@@ -16,7 +16,7 @@
       <%= select_tag(:search_id, options_for_select([['Title', 'intitle'], ["Author", "inauthor"], ["Subject", "subject"]])) %>
       <%= select_tag(:num_results_id, options_for_select([[10, 10], [25, 25], [40, 40]])) %>
       <%= text_field_tag :query %>
-      <%= submit_tag %>
+      <%= submit_tag "Search"%>
       <% end %>
     <% end %>
   </nav>
@@ -31,7 +31,7 @@
     <% if current_user %>
       <h4>Currently logged in as: <%= current_user.username %></h4>
       <%= link_to "Log Out", sessions_path, method: :delete %> |
-      <%= link_to "Delete my Account", users_path, method: :delete %>
+      <%= link_to "Delete my Account", users_path, method: :delete %> | 
       <%= link_to "Home Page", user_path(current_user), method: :get%>
     
     <% else %>

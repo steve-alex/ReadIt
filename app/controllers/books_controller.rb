@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :set_book, only: [:show, :edit, :update, :destroy, :reviews]
 
   # GET /books
   # GET /books.json
@@ -21,6 +21,7 @@ class BooksController < ApplicationController
   # GET /books/1.json
   def show
     @reading_lists = current_user.reading_lists
+    @reviews = @book.reviews
   end
 
   # POST /books
@@ -36,7 +37,6 @@ class BooksController < ApplicationController
       end
     else
       if current_user.books.include?(@book)
-        byebug
         ReadingListBook.find_by(reading_list_id: current_user.reading_list_containing(@book).id, book_id: @book.id).destroy
         respond_to do |format|
           format.html { redirect_to @book, notice: "Book was successfully moved to #{@reading_list.name}." }
@@ -52,6 +52,9 @@ class BooksController < ApplicationController
     end
   end
 
+  def reviews
+
+  end
   # DELETE /books/1
   # DELETE /books/1.json
   def destroy
