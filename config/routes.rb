@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :reviews, only: [:update]
 
   get "books/:id/new_review", to: "reviews#new", as: "new_review"
+  get "books/:id/get_reviews", to: "books#reviews", as: "get_reviews"
   get "reviews/:id/edit", to: "reviews#edit", as: "edit_review"
   post "reviews", to: "reviews#create"
   delete "books/:id", to: "reviews#destroy", as: "delete_review"
@@ -21,7 +22,6 @@ Rails.application.routes.draw do
   post 'books', to: 'books#search', as: 'search_books'
   post 'books/select', to: 'books#select', as: 'select_book'
   post "books/archivebook", to: "books#archivebook", as: "add_book"
- 
 
   get "sessions/new", to: "sessions#new", as: "new_session"
   post 'sessions', to: "sessions#create"
