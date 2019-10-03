@@ -1,28 +1,42 @@
-<h1>Search Results</h1>
+<head>
+  <link rel="stylesheet" href="assets/stylesheets/books.scss" type="text/scss">
+</head>
 
-<p><%= @message %></p>
+<body>
+<div class="search-results-div"><h1>Search Results</h1></div>
+
+<div class="message-div"></div><p><%= @message %></p>
 <% @books.each do |book| %>
   <div class="book-container-div">
-    <%= form_tag select_book_path(book) do %>
-      <span class="book-image-span"><img src="<%= book["image_url"] %>"></span>
-      <span class="book-info-span"><%= book["title"]%>
-      <%= book["authors"]%>
-      <%= book["categories"] %>
-      <% hidden_field_tag :'book[google_id]', book['google_id'] %>
-      <% hidden_field_tag :'book[title]', book['title'] %>
-      <% hidden_field_tag :'book[subtitle]', book['subtitle'] %>
-      <% hidden_field_tag :'book[authors]', book['authors'] %>
-      <% hidden_field_tag :'book[categories]', book['categories'] %>
-      <% hidden_field_tag :'book[description]', book['description'] %>
-      <% hidden_field_tag :'book[language]', book['language'] %>
-      <% hidden_field_tag :'book[image_url]', book['image_url'] %>
-      <% hidden_field_tag :'book[published_date]', book['published_date'] %>
-      <% hidden_field_tag :'book[page_count]', book['page_count'] %>
-      <% hidden_field_tag :'book[google_average_rating]', book['google_average_rating'] %>
-      <% hidden_field_tag :'book[rating_count]', book['rating_count'] %>
-      <%= submit_tag "Show book" %> </td></span>
-      
-    <% end %> 
+      <div class="book-image-div"><img src="<%= book["image_url"] %>"></div>
+      <div class="book-info-div">
+        <div class="book-title-div"><%= book["title"]%></div>
+        <div class="book-authors-div"><%= book["authors"]%></div>
+        <div class="book-categories-div"><%= book["categories"] %></div>
+        <div class="book-form-div"><%= form_tag select_book_path(book) do %>
+                <% hidden_field_tag :'book[google_id]', book['google_id'] %>
+                <% hidden_field_tag :'book[title]', book['title'] %>
+                <% hidden_field_tag :'book[subtitle]', book['subtitle'] %>
+                <% hidden_field_tag :'book[authors]', book['authors'] %>
+                <% hidden_field_tag :'book[categories]', book['categories'] %>
+                <% hidden_field_tag :'book[description]', book['description'] %>
+                <% hidden_field_tag :'book[language]', book['language'] %>
+                <% hidden_field_tag :'book[image_url]', book['image_url'] %>
+                <% hidden_field_tag :'book[published_date]', book['published_date'] %>
+                <% hidden_field_tag :'book[page_count]', book['page_count'] %>
+                <% hidden_field_tag :'book[google_average_rating]', book['google_average_rating'] %>
+                <% hidden_field_tag :'book[rating_count]', book['rating_count'] %>
+                <%= submit_tag "Show book" %>
+                <% end %>
+        </div>
+      </div>
   </div>
+  <br>
+  <br>
 <% end %>
 
+</body>
+
+<footer>
+
+</footer>

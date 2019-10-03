@@ -20,14 +20,18 @@
 <br> <br>
 
 <% @reviews.first(5).each do |review| %>
-    <h2><%= review.title %> | <%= review.user.username %></h2>
-    <p><strong>Rating: <%= review.rating %>/5</strong></p>
-    <p><%= review.content %></p>
-    <% if review.user_id == current_user.id %>
-      <%= link_to "Edit", edit_review_path(review) %>
-      <%= button_to "Delete", review, method: "delete", data: { confirm: 'Are you sure?'} %>
+  <h2><%= review.title %> | <%= review.user.username %></h2>
+  <p><strong>Rating: <%= review.rating %>/5</strong></p>
+  <p><%= review.content %></p>
+
+  <% if review.user_id == current_user.id %>
+    <%= link_to "Edit", edit_review_path(review) %> | 
+    <%= form_tag @book, method: 'delete' do%>
+      <%= hidden_field_tag :review_id, review.id  %>
+      <%= submit_tag "Delete" %>
     <% end %>
-    <br> <br>
+  <% end %>
+  <br> <br>
 <% end %>
 
 <% if current_user.finished_reading.books.include?(@book) %>

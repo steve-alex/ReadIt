@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-  before_action :set_review, only: [:edit, :update, :destroy]
+  before_action :set_review, only: [:edit, :update]
 
   # GET /reviews
   # GET /reviews.json
@@ -15,7 +15,7 @@ class ReviewsController < ApplicationController
 
   # GET /reviews/1/edit
   def edit
-    @book = Book.find(params[:id])
+    @book = Book.find(@review.book.id)
   end
 
   # POST /reviews
@@ -39,9 +39,10 @@ class ReviewsController < ApplicationController
   # PATCH/PUT /reviews/1
   # PATCH/PUT /reviews/1.json
   def update
+    @book = Book.find(@review.book.id) 
     respond_to do |format|
       if @review.update(review_params)
-        format.html { redirect_to @review, notice: 'Review was successfully updated.' }
+        format.html { redirect_to @book, notice: 'Review was successfully updated.' }
         format.json { render :show, status: :ok, location: @review }
       else
         format.html { render :edit }
@@ -53,9 +54,11 @@ class ReviewsController < ApplicationController
   # DELETE /reviews/1
   # DELETE /reviews/1.json
   def destroy
+    @review = Review.find(params[:review_id])
+    @book = @review.book
     @review.destroy
     respond_to do |format|
-      format.html { redirect_to reviews_url, notice: 'Review was successfully destroyed.' }
+      format.html { redirect_to @book, notice: 'Review was successfully deleted.' }
       format.json { head :no_content }
     end
   end
