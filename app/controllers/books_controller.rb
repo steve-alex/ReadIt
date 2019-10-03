@@ -1,8 +1,5 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy, :reviews]
 
-  # GET /books
-  # GET /books.json
   def index
     @books = []
   end
@@ -17,17 +14,14 @@ class BooksController < ApplicationController
     redirect_to book_path(@book)
   end
 
-  # GET /books/1
-  # GET /books/1.json
   def show
+    @book = Book.find(params[:id])
     @reading_lists = current_user.reading_lists
     @reviews = @book.reviews
   end
 
-  # POST /books
-  # POST /books.json
   def archivebook
-    @book = Book.find(params[:book_id]) #Book.new(book_params)
+    @book = Book.find(params[:book_id])
     @reading_list = ReadingList.find(params[:reading_list_id])
 
     if @reading_list.books.include?(@book)
@@ -52,11 +46,6 @@ class BooksController < ApplicationController
     end
   end
 
-  def reviews
-
-  end
-  # DELETE /books/1
-  # DELETE /books/1.json
   def destroy
     @book.destroy
     respond_to do |format|
@@ -74,18 +63,11 @@ class BooksController < ApplicationController
     else
       @message = ""
     end
-    #(byebug) @books = APIRequestMaker.new(params[:search_id], "Harry Potter", params[:num_results_id]).build_book_hash
-    #@books = APIRequestMaker.new(params[:search_id], params[:query], "10").build_book_hash
-    #@books = APIRequestMaker.new("intitle", params[:query], params[:num_results_id]).build_book_hash
+    
     render :index
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_book
-      @book = Book.find(params[:id])
-    end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
       params.permit(:authors, :categories, :description, :google_id, :image_url, :language, :page_count, :subtitle, :title)

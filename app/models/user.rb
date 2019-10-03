@@ -1,6 +1,6 @@
 class User < ApplicationRecord
     has_many :reading_lists
-    has_many :reviews
+    has_many :reviews, dependent: :destroy
 
     def books
         reading_lists.map(&:books).flatten      
@@ -15,4 +15,10 @@ class User < ApplicationRecord
         a = reading_lists.select{|rl| rl.name == "Finished Reading"}
         a[0]
     end
+
+
+    def books_in(readinglist)
+        
+    end
+
 end
