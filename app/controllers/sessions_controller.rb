@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
 
     def new
+        session[:user_id] = User.new.id
     end
 
     def create
@@ -8,6 +9,7 @@ class SessionsController < ApplicationController
 
         if @user && @user.authenticate(params[:user][:password])
             session[:user_id] = @user.id
+            flash[:notice] = "Welcome back #{@user.username}!"
             redirect_to user_path(@user)
         else
             flash[:notice] = "A user with this username and password combination could not be found. Please try again."
