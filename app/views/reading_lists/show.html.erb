@@ -1,6 +1,6 @@
-<p id="notice"><%= notice %></p>
+<div class="notive-div"><p id="notice"><%= notice %></p></div>
 
-<h1><%= @reading_list.name %></h1>
+<div class="reading-list-name-div"><h1><%= @reading_list.name %></h1></div>
 
 <% @books.each do |book| %>
     
@@ -23,3 +23,6 @@
     </tbody>
 </table>
 
+<% if @reading_list.deletable %>
+    <%= link_to "Delete this reading list", delete_reading_list_path, method: :delete%>
+<% end %>

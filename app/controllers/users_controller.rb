@@ -25,9 +25,9 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         session[:user_id] = @user.id
-        ReadingList.create(user_id: @user.id, name: "Currently Reading")
-        ReadingList.create(user_id: @user.id, name: "Finished Reading")
-        ReadingList.create(user_id: @user.id, name: "Wish List")
+        ReadingList.create(user_id: @user.id, name: "Currently Reading", deletable: false)
+        ReadingList.create(user_id: @user.id, name: "Finished Reading", deletable: false)
+        ReadingList.create(user_id: @user.id, name: "Wish List", deletable: false)
 
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
