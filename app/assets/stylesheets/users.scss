@@ -1,3 +1,18 @@
-// Place all the styles related to the Users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.welcome-user-div h1{
+
+}
+
+.reading-list-container-div {
+    min-height: 330px;
+    max-height: 130px;
+    background-image: url("https://i.imgur.com/uo3DPJB.png");
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: 100%;
+}
+
+.book-image-div {
+    padding-left: 40px;
+    padding-top: 35px;
+    //background-image: url("app/assets/images/8616536.png");
+}

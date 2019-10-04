@@ -10,8 +10,15 @@
       </ul>
     </div>
   <% end %>
-
+  
   <div class="actions">
+    <%= form.hidden_field :user_id, :value => current_user.id %>
+
+    <%= form.label :name %>
+    <%= form.text_field :name, required: true%> <br>
+
+    <br>
+
     <%= form.submit %>
   </div>
 <% end %>

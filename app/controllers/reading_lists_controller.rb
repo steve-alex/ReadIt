@@ -21,17 +21,18 @@ class ReadingListsController < ApplicationController
   end
 
   def create
-    @reading_list = ReadingList.new(reading_list_params)
+    @reading_list = ReadingList.create(name: reading_list_params[:name], user_id: reading_list_params[:user_id])
 
     respond_to do |format|
       if @reading_list.save
-        format.html { redirect_to @reading_list, notice: 'Reading list was successfully created.' }
+        format.html { redirect_to user_path(current_user), notice: 'Reading list was successfully created.' }
         format.json { render :show, status: :created, location: @reading_list }
       else
         format.html { render :new }
         format.json { render json: @reading_list.errors, status: :unprocessable_entity }
       end
     end
+    
   end
 
   def update #not using yet
@@ -47,10 +48,17 @@ class ReadingListsController < ApplicationController
   end
 
   def destroy #not using yet
-    @reading_list.destroy
-    respond_to do |format|
-      format.html { redirect_to reading_lists_url, notice: 'Reading list was successfully destroyed.' }
-      format.json { head :no_content }
+    if @reading_list.deletable
+      @reading_list.destroy
+      respond_to do |format|
+        format.html { redirect_to user_path(current_user), notice: 'Reading list was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to user_path(current_user), notice: 'This reading list cannot be deleted.' }
+        format.json { head :no_content }
+      end
     end
   end
 
