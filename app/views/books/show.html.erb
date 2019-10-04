@@ -39,8 +39,8 @@
     <% end %>
   </div>
   
-  <div class="show-reviews-div">
   <% if @reviews %>
+  <div class="show-reviews-div">
     <% @reviews.first(5).each do |review| %>
       <div class="review-title-div"><h2><%= review.title %> |   <%= review.user.username %></h2></div>
       <div class="review-rating-div"><p><strong>Rating: <%= review.rating %>/5</strong></p></div>
@@ -56,7 +56,8 @@
         </div>
       <% end %>
     <% end %>
-   </div
+   </div>
+  <% end %>
 
 <% if current_user.finished_reading.books.include?(@book) && !@review%>
   <%= link_to "Add Review", new_review_path %>
