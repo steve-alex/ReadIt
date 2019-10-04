@@ -36,28 +36,31 @@
   <div class="add-review-div">
     <% if current_user.finished_reading.books.include?(@book) && !@review%>
       <%= link_to "Add Review", new_review_path %>
-    <% end %>
+     <% end %>
   </div>
-  
-  <% if @reviews %>
-  <div class="show-reviews-div">
-    <% @reviews.first(5).each do |review| %>
-      <div class="review-title-div"><h2><%= review.title %> |   <%= review.user.username %></h2></div>
-      <div class="review-rating-div"><p><strong>Rating: <%= review.rating %>/5</strong></p></div>
-      <div class="review-content-div"><p><%= review.content %></p></div>
 
-      <% if review.user_id == current_user.id %>
-        <div class="edit-review-div"><%= link_to "Edit", edit_review_path(review) %></div>
-        <div class="button-div">
-          <%= form_tag @book, method: 'delete' do%>
-            <%= hidden_field_tag :review_id, review.id  %>
-            <%= submit_tag "Delete" %>
-          <% end %>
-        </div>
-      <% end %>
+  
+    <% if @reviews %>
+    <div class="show-reviews-div">
+      <% @reviews.first(5).each do |review| %>
+
+        <div class="review-title-div"><h2><%= review.title %> |   <%= review.user.username %></h2></div>
+        <div class="review-rating-div"><p><strong>Rating: <%= review.rating %>/5</strong></p></div>
+        <div class="review-content-div"><p><%= review.content %></p></div>
+
+        <% if review.user_id == current_user.id %>
+          <div class="edit-review-div"><%= link_to "Edit", edit_review_path(review) %></div>
+          
+          <div class="button-div">
+            <%= form_tag @book, method: 'delete' do%>
+              <%= hidden_field_tag :review_id, review.id  %>
+              <%= submit_tag "Delete" %>
+             <% end %>
+          </div>
+         <% end %>
+       <% end %>
+    </div>
     <% end %>
-   </div>
-  <% end %>
 
 <br> <br>
 
