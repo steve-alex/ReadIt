@@ -1,6 +1,8 @@
 class SessionsController < ApplicationController
+    layout 'login'
 
     def new
+        
         session[:user_id] = User.new.id
     end
 
