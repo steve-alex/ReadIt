@@ -56,6 +56,10 @@
         </div>
       <% end %>
     <% end %>
+   </div
+
+<% if current_user.finished_reading.books.include?(@book) && !@review%>
+  <%= link_to "Add Review", new_review_path %>
 <% end %>
 
 <br> <br>
