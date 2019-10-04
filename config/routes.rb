@@ -8,13 +8,15 @@ Rails.application.routes.draw do
   post "reviews", to: "reviews#create"
   delete "books/:id", to: "reviews#destroy", as: "delete_review"
 
-  resources :reading_lists, include: [:index, :show] #:edit, :update ??
+  get "reading_lists/create", to: "reading_lists#create", as: "create_reading_lists"
+  delete "users/:id", to: "reading_lists#destroy", as: "delete_reading_list"
+  resources :reading_lists, include: [:index, :show]
 
   resources :users, except: [:destroy]
   delete "users", to: "users#destroy"
   get "users/:id/analytics", to: "users#analytics", as: "show_analytics"
   get "users/:id/settings", to: "users#settings", as: "settings"
-  
+
   get 'books/:id', to: 'books#show', as: 'book'
   get 'books', to: 'books#index', as: 'books' #to delete!!!
   #below route to show all reviews of a book (no method in controller or view page)

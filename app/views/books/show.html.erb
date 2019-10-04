@@ -1,3 +1,7 @@
+<head>
+  <link rel="stylesheet" href="assets/stylesheets/books.scss" type="text/scss">
+</head>
+
 <div class="book-notice-div"><p id="notice"><%= notice %></p></div>
 
 <div class="book-show-container">
@@ -28,13 +32,13 @@
   <br>
   <br>
   <br>
-  
+
   <div class="add-review-div">
     <% if current_user.finished_reading.books.include?(@book) && !@review%>
       <%= link_to "Add Review", new_review_path %>
      <% end %>
   </div>
-  
+
   
     <% if @reviews %>
     <div class="show-reviews-div">
@@ -53,13 +57,10 @@
               <%= submit_tag "Delete" %>
              <% end %>
           </div>
-
          <% end %>
        <% end %>
     </div>
     <% end %>
-  
-
 
 
 <br> <br>
