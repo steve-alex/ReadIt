@@ -5,10 +5,16 @@
     width: 78%;
 }
 
+.show-book-container-div {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .book-image-div {
-    width: 35%;
+    width: 10%;
     display: inline-block;
 }
+
 
 .book-info-div {
     width: 49%;
@@ -21,3 +27,15 @@
     line-height: 35px;
 }
 
+.show-book-image-div {
+    padding-left: 100px;
+
+    width: 30%;
+}
+
+.show.book-info-div{
+    float: left;
+    width: 49%;
+    display: inline-block;
+    vertical-align: top;
+}

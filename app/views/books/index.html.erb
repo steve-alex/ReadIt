@@ -3,13 +3,12 @@
 </head>
 
 <body>
-<div class="search-results-div"><h1>Search Results</h1></div>
 
 <div class="message-div"></div><p><%= @message %></p>
 <% @books.each do |book| %>
-  <div class="book-container-div">
-      <div class="book-image-div"><img src="<%= book["image_url"] %>"></div>
-      <div class="book-info-div">
+  <div class="show-book-container-div">
+      <div class="show-book-image-div"><img src="<%= book["image_url"] %>"></div>
+      <div class="show-book-info-div">
         <div class="book-title-div"><%= book["title"]%></div>
         <div class="book-authors-div"><%= book["authors"]%></div>
         <div class="book-categories-div"><%= book["categories"] %></div>

@@ -62,8 +62,10 @@
     </div>
     <% end %>
 
-<br> <br>
-
 <% if current_user.books.include?(@book) %>
   <%= link_to "Remove from #{current_user.reading_list_containing(@book).name}", unarchive_book_path, method: :delete%>
 <% end %>
+
+<br>
+<br>
+<br>

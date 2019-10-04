@@ -1,5 +1,8 @@
-.welcome-user-div h1{
+.body {
+    border: solid;
+}
 
+.welcome-user-div h1{
 }
 
 .reading-list-container-div {
@@ -9,6 +12,7 @@
     background-repeat: no-repeat;
     background-position: bottom;
     background-size: 100%;
+    margin: 40px;
 }
 
 .book-image-div {
