@@ -11,9 +11,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2019_10_04_084053) do
-  
-#ActiveRecord::Schema.define(version: 2019_10_04_082431) do
-
 
   create_table "books", force: :cascade do |t|
     t.string "google_id"

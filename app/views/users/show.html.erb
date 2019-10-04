@@ -4,7 +4,7 @@
 
 <div class="reading-list-notice"><p id="notice"><%= notice %></p></div>
 
-<div class="welcome-user-div"><h1><%="Welcome" if current_user == @user%> <%= @user.username %></h1></div>
+<div class="welcome-user-div"><h1><%="Your" if current_user == @user%> Reading Lists</h1></div>
 <br>
 <% @user.reading_lists.each do |reading_list| %>
     <div class= reading-list-container-div>
@@ -19,4 +19,4 @@
 <br>
 <% end %>
 
-<div class="new-reading-list-div"><%= link_to "Create new reading list", new_reading_list_path %></div>
+<div class="new-reading-list-div"><%= link_to "+ Create Reading List", new_reading_list_path %></div>

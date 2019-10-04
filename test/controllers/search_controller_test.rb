@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class SearchControllerTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
+  test "can search for books using api" do
+    # assert true
+  end
 end
