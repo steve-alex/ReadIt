@@ -1,17 +1,19 @@
-<h1>Log In</h1>
+<div class="login-container">
+    <div class="login-form">
+        <h1>Log In</h1>
+        <h4 id="notice"><%= notice %></h4>
 
-<h4 id="notice"><%= notice %></h4>
+        <%= form_tag sessions_path do%>
+            <%= label :user, :username%> 
+            <%= text_field :user, :username %> <br>
 
+            <%= label :user, :password%> 
+            <%= password_field :user, :password %> <br>
 
-<%= form_tag sessions_path do%>
-    <%= label :user, :username%> 
-    <%= text_field :user, :username %> <br>
+            <br>
+            <%= submit_tag "Log In" %>
+        <% end %>
 
-    <%= label :user, :password%> 
-    <%= password_field :user, :password %> <br>
-
-    <br>
-    <%= submit_tag "Log In" %>
-<% end %>
-
-<%= link_to "Create Account", new_user_path %>
+        <%= link_to "Create Account", new_user_path %>
+    </div>
+</div>

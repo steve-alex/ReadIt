@@ -1,4 +1,4 @@
-session.destroy
+#session.destroy
 User.destroy_all
 Book.destroy_all
 Review.destroy_all

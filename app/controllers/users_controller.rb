@@ -29,7 +29,7 @@ class UsersController < ApplicationController
         ReadingList.create(user_id: @user.id, name: "Finished Reading", deletable: false)
         ReadingList.create(user_id: @user.id, name: "Wish List", deletable: false)
 
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.html { redirect_to @user, notice: "Welcome to ReadIt, #{@user.username}!" }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
